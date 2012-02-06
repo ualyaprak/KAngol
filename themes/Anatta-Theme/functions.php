@@ -422,4 +422,350 @@ add_action('admin_menu', 'mytheme_add_admin');
 /*Code for Adding Theme Options in Admin Panel Ends here*/
 //////////////////////////////////////////////////////////
 
+
+/////////////////////////////////////////////////////
+/* Code for adding page options in wp-page backend*/
+////////////////////////////////////////////////////
+
+
+/**
+
+/* Add a new meta box to the admin menu. */
+	add_action( 'admin_menu', 'hybrid_create_meta_box' );
+
+/* Saves the meta box data. */
+	add_action( 'save_post', 'hybrid_save_meta_data' );
+
+/**
+ * Function for adding meta boxes to the admin.
+ * Separate the post and page meta boxes.*/
+
+function hybrid_create_meta_box() {
+	global $theme_name;
+
+	add_meta_box( 'post-meta-boxes', __('Post Options'), 'post_meta_boxes', 'post', 'normal', 'high' );
+	add_meta_box( 'slideshow-meta-boxes', __('Slideshow Options'), 'slideshow_meta_boxes', 'page', 'normal', 'high' );
+	add_meta_box( 'page-meta-boxes', __('Page Options'), 'page_meta_boxes', 'page', 'normal', 'high' );
+}
+
+function hybrid_post_meta_boxes() {
+
+	/* Array of the meta box post options. */
+	$meta_boxes = array(
+		'postimage_gallery' => array( 'name' => 'postimage_gallery', 'title' => __('IMAGE GALLERY:', 'hybrid'),'options' => array('Gallery 1','Gallery 2', 'Gallery 3'), 'type' => 'select' ),
+		'video_post1' => array( 'name' => 'video_post1', 'title' => __('VIDEO: <br/><small>Enter the URLs to the videos you would like featured on the page</small>', 'hybrid'), 'type' => 'text' ),
+		'video_post2' => array( 'name' => 'video_post2', 'title' => __('', 'hybrid'), 'type' => 'text' ),
+		'video_post3' => array( 'name' => 'video_post3', 'title' => __('', 'hybrid'), 'type' => 'text' ),
+		'postslider1' => array( 'name' => 'postslider1', 'title' => __('SLIDER:', 'hybrid'),'options' => array('Collection','Blog', 'Retrospective'), 'type' => 'select' ),
+
+	);
+
+	return apply_filters( 'hybrid_post_meta_boxes', $meta_boxes );
+}
+
+function hybrid_portfolio_meta_boxes() {
+		
+	/* Array of the meta box slideshow options. */
+		
+		$portfolio_meta_boxes = array(
+			'slider1' => array( 'name' => 'slider1', 'title' => __('SLIDER_01:', 'hybrid'),'options' => array('Collection','Blog', 'Retrospective'), 'type' => 'select' ),
+			'slider2' => array( 'name' => 'slider2', 'title' => __('SLIDER_02:', 'hybrid'),'options' => array('Collection','Blog', 'Retrospective'), 'type' => 'select' ),
+			
+		);
+	
+	return apply_filters( 'hybrid_portfolio_meta_boxes', $portfolio_meta_boxes );
+	
+}
+
+function hybrid_slideshow_meta_boxes() {
+		
+	/* Array of the meta box page options. */
+		
+		$slides_meta_boxes = array(
+			'image_gallery' => array( 'name' => 'image_gallery', 'title' => __('IMAGE GALLERY:', 'hybrid'),'options' => array('Gallery 1','Gallery 2', 'Gallery 3'), 'type' => 'select' ),
+			'video_slideshow1' => array( 'name' => 'video_slideshow1', 'title' => __('VIDEO: <br/><small>Enter the URLs to the videos you would like featured on the page</small>', 'hybrid'), 'type' => 'text' ),
+			'video_slideshow2' => array( 'name' => 'video_slideshow2', 'title' => __('', 'hybrid'), 'type' => 'text' ),
+			'video_slideshow3' => array( 'name' => 'video_slideshow3', 'title' => __('', 'hybrid'), 'type' => 'text' ),
+			
+		);
+	
+	return apply_filters( 'hybrid_slideshow_meta_boxes', $slides_meta_boxes );
+	
+}
+
+
+/**
+ * Displays meta boxes on the Write Page panel.  Loops
+ * through each meta box in the $meta_boxes variable.
+ * Gets array from hybrid_page_meta_boxes()
+ *
+ * @since 0.3
+ */
+ 
+function post_meta_boxes() {
+	global $post;
+	$meta_boxes = hybrid_post_meta_boxes(); ?>
+	<div class="posts_home">
+	<table class="form-table">
+	<?php foreach ( $meta_boxes as $meta ) :
+
+		$value = get_post_meta( $post->ID, $meta['name'], true );
+
+		if ( $meta['type'] == 'text' )
+			get_meta_text_input( $meta, $value );
+		elseif ( $meta['type'] == 'textarea' )
+			get_meta_textarea( $meta, $value );
+		elseif ( $meta['type'] == 'select' )
+			get_meta_select( $meta, $value );
+
+	endforeach; ?>
+	</table>
+    </div>
+<?php
+}
+
+function slideshow_meta_boxes() {
+	global $post;
+	$smeta_boxes = hybrid_slideshow_meta_boxes(); 
+	$template = get_post_meta($post->ID, '_wp_page_template', true);
+	?>
+	<div class="slides"<?php if(!empty($template) && $template == 'home_template.php') { ?> style="display:block;" <?php } else { ?> style="display:none;" <?php } ?>>
+	<table class="form-table">
+	<?php foreach ( $smeta_boxes as $meta ) :
+
+		$value = get_post_meta( $post->ID, $meta['name'], true );
+
+		if ( $meta['type'] == 'text' )
+			get_meta_text_input( $meta, $value );
+		elseif ( $meta['type'] == 'textarea' )
+			get_meta_textarea( $meta, $value );
+		elseif ( $meta['type'] == 'select' )
+			get_meta_select( $meta, $value );
+
+	endforeach; ?>
+	</table>
+    </div>
+<?php
+} 
+  
+ 
+function page_meta_boxes() {
+	global $post;
+	$p_meta_boxes =  hybrid_portfolio_meta_boxes();
+	$template = get_post_meta($post->ID, '_wp_page_template', true);
+	
+	?>
+    
+    <div class="home"<?php if(!empty($template) && $template == 'home_template.php') { ?> style="display:block;" <?php } else { ?> style="display:none;" <?php } ?>>
+	<table class="form-table">
+	<?php foreach ( $p_meta_boxes as $metap ) :
+
+		$value = stripslashes( get_post_meta( $post->ID, $metap['name'], true ) );
+
+		if ( $metap['type'] == 'text' )
+			get_meta_text_input( $metap, $value );
+		elseif ( $metap['type'] == 'textarea' )
+			get_meta_textarea( $metap, $value );
+		elseif ( $metap['type'] == 'select' )
+			get_meta_select( $metap, $value );
+
+	endforeach; ?>
+	</table>
+    </div>
+    
+    
+<?php
+} 
+
+/**
+ * Outputs a text input box with arguments from the
+ * parameters.  Used for both the post/page meta boxes.
+ *
+ * @since 0.3
+ * @param array $args
+ * @param array string|bool $value
+ */
+function get_meta_text_input( $args = array(), $value = false ) {
+
+	extract( $args ); ?>
+
+	<tr>
+		<th style="width:25%;">
+			<label for="<?php echo $name; ?>"><?php echo $title; ?></label>
+		</th>
+		<td>
+			<input type="text" name="<?php echo $name; ?>" id="<?php echo $name; ?>" value="<?php echo wp_specialchars( $value, 1 ); ?>" size="30" tabindex="30" style="width: 95%;" />
+			<input type="hidden" name="<?php echo $name; ?>_noncename" id="<?php echo $name; ?>_noncename" value="<?php echo wp_create_nonce( plugin_basename( __FILE__ ) ); ?>" />
+		</td>
+	</tr>
+	<?php
+}
+
+/**
+ * Outputs a select box with arguments from the
+ * parameters.  Used for both the post/page meta boxes.
+ *
+ * @since 0.3
+ * @param array $args
+ * @param array string|bool $value
+ */
+function get_meta_select( $args = array(), $value = false ) {
+
+	extract( $args ); ?>
+
+	<tr>
+		<th style="width:25%;">
+			<label for="<?php echo $name; ?>"><?php echo $title; ?></label>
+		</th>
+		<td>
+			<select name="<?php echo $name; ?>" id="<?php echo $name; ?>">
+			<?php foreach ( $options as $option ) : ?>
+				<option <?php if ( htmlentities( $value, ENT_QUOTES ) == $option ) echo ' selected="selected"'; ?>>
+					<?php echo $option; ?>
+				</option>
+			<?php endforeach; ?>
+			</select>
+			<input type="hidden" name="<?php echo $name; ?>_noncename" id="<?php echo $name; ?>_noncename" value="<?php echo wp_create_nonce( plugin_basename( __FILE__ ) ); ?>" />
+		</td>
+	</tr>
+	<?php
+}
+
+/**
+ * Outputs a textarea with arguments from the
+ * parameters.  Used for both the post/page meta boxes.
+ *
+ * @since 0.3
+ * @param array $args
+ * @param array string|bool $value
+ */
+function get_meta_textarea( $args = array(), $value = false ) {
+
+	extract( $args ); ?>
+
+	<tr>
+		<th style="width:25%;">
+			<label for="<?php echo $name; ?>"><?php echo $title; ?></label>
+		</th>
+		<td>
+			<textarea name="<?php echo $name; ?>" id="<?php echo $name; ?>" cols="60" rows="4" tabindex="30" style="width: 95%;"><?php echo wp_specialchars( $value, 1 ); ?></textarea>
+			<input type="hidden" name="<?php echo $name; ?>_noncename" id="<?php echo $name; ?>_noncename" value="<?php echo wp_create_nonce( plugin_basename( __FILE__ ) ); ?>" />
+		</td>
+	</tr>
+	<?php
+}
+
+/**
+ * Loops through each meta box's set of variables.
+ * Saves them to the database as custom fields.
+ *
+ * @since 0.3
+ * @param int $post_id
+ */
+function hybrid_save_meta_data( $post_id ) {
+	global $post;
+
+	if ( 'page' == $_POST['post_type'] ) {
+		$s_meta_boxes = array_merge(hybrid_slideshow_meta_boxes(), hybrid_portfolio_meta_boxes()); 
+		}
+	else {
+		$s_meta_boxes = array_merge(hybrid_post_meta_boxes());
+		}
+
+	foreach ( $s_meta_boxes as $meta_box ) :
+
+		if ( !wp_verify_nonce( $_POST[$meta_box['name'] . '_noncename'], plugin_basename( __FILE__ ) ) )
+			return $post_id;
+
+		if ( 'page' == $_POST['post_type'] && !current_user_can( 'edit_page', $post_id ) )
+			return $post_id;
+
+		elseif ( 'post' == $_POST['post_type'] && !current_user_can( 'edit_post', $post_id ) )
+			return $post_id;
+
+		$data = stripslashes( $_POST[$meta_box['name']] );
+
+		if ( get_post_meta( $post_id, $meta_box['name'] ) == '' )
+			add_post_meta( $post_id, $meta_box['name'], $data, true );
+
+		elseif ( $data != get_post_meta( $post_id, $meta_box['name'], true ) )
+			update_post_meta( $post_id, $meta_box['name'], $data );
+
+		elseif ( $data == '' )
+			delete_post_meta( $post_id, $meta_box['name'], get_post_meta( $post_id, $meta_box['name'], true ) );
+
+	endforeach;
+	
+	
+}
+
+add_action('admin_head', 'theme_page_head');
+	
+function theme_page_head() {
+?>
+<!--code for getting selected page template -->
+    <script type="text/javascript">
+	jQuery(document).ready(function($) {
+
+	  jQuery("#page_template").change( 
+		function (){ 
+		var select_value = jQuery(this).val();
+		
+		//alert(select_value); 
+		if(select_value == "home_template.php"){
+		
+		  $(".slides").show();
+		  $(".home").show();		 
+		}
+		else 
+		{
+			 $(".home").hide();
+			 $(".slides").hide();
+		}
+		
+		});
+	});
+
+	
+	</script>
+
+<?php
+}
+
+/////////////////////////////////////////////////////
+/* Code for adding page options ends here*/
+////////////////////////////////////////////////////
+
+//function for showing Slider selected for page/post options
+
+function get_slider_option($slider_val)
+{
+	if($slider_val == 'Collection')
+	{
+		$query_string = 'category_name=shop&showposts=6';
+	}
+	else
+	{
+		$query_string = 'category_name='.$slider_val.'&showposts=-1';
+	}
+	
+	query_posts($query_string);
+	// the Loop
+	while (have_posts()) : the_post();
+	{
+		the_post_thumbnail('thumbnail');
+	?>
+        <a href="<?php the_permalink() ?>"><?php the_title(); ?></a>
+        <br/>
+        <p>
+			<?php echo excerpt(20); ?><a href="<?php the_permalink() ?>">MORE</a>
+        </p>
+            
+	<?php }	
+	endwhile;
+	wp_reset_query();
+
+}
+
+
 ?>
