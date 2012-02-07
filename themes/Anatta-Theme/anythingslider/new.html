@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+
+	<title>AnythingSlider</title>
+	<link rel="shortcut icon" href="demos/images/favicon.ico">
+	<link rel="apple-touch-icon" href="demos/images/apple-touch-icon.png">
+
+	<!-- jQuery (required) -->
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+
+	<!-- Demo stuff -->
+	<link rel="stylesheet" href="demos/css/page.css" media="screen">
+	<script src="demos/js/jquery.jatt.min.js"></script>
+
+	<!-- AnythingSlider -->
+	<link rel="stylesheet" href="css/anythingslider.css">
+	<script src="js/jquery.anythingslider.min.js"></script>
+
+	<!-- Ideally, add the stylesheet(s) you are going to use here,
+	 otherwise they are loaded and appended to the <head> automatically and will over-ride the IE stylesheet below -->
+	<link rel="stylesheet" href="css/theme-metallic.css">
+	
+
+	<!-- Older IE stylesheet, to reposition navigation arrows, added AFTER the theme stylesheet above -->
+	<!--[if lte IE 7]>
+	<link rel="stylesheet" href="css/anythingslider-ie.css" type="text/css" media="screen" />
+	<![endif]-->
+
+	<script>
+		// Set up Sliders
+		// **************
+		$(function(){
+
+			$('#slider1').anythingSlider({
+				theme           : 'metallic',
+				easing          : 'easeInOutBack',
+				navigationFormatter : function(index, panel){
+					return ['Slab', 'Parking Lot', 'Drive', 'Glorius Dawn', 'Bjork?', 'Traffic Circle'][index - 1];
+				},
+				onSlideComplete : function(slider){
+					// alert('Welcome to Slide #' + slider.currentPage);
+				}
+			});
+
+			// tooltips for first demo
+			$.jatt();
+
+		});
+	</script>
+</head>
+
+<body id="main">
+
+	<div id="page-wrap">
+
+			<!-- AnythingSlider #1 -->
+			<ul id="slider1">
+
+				<li><img src="demos/images/slide-civil-1.jpg" alt=""></li>
+
+				<li><img src="demos/images/slide-env-1.jpg" alt=""></li>
+
+				<li><img src="demos/images/slide-civil-2.jpg" alt=""></li>
+
+				<li><object width="480" height="385"><param name="movie" value="http://www.youtube.com/v/zSgiXGELjbc&amp;hl=en_US&amp;fs=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/zSgiXGELjbc&amp;hl=en_US&amp;fs=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="480" height="385"></embed></object></li>
+
+				<li><img src="demos/images/slide-civil-2.jpg" alt=""></li>
+			</ul>  
+			
+
+		
+</div>
+
+</body>
+
+</html>

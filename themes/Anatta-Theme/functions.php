@@ -760,6 +760,12 @@ function get_slider_option($slider_val)
         <p>
 			<?php echo excerpt(20); ?><a href="<?php the_permalink() ?>">MORE</a>
         </p>
+        <!-- AddThis Button BEGIN -->
+        <div class="addthis_toolbox addthis_default_style " addthis:url="<?php echo get_permalink(); ?>" addthis:title="<?php echo get_the_title($postid); ?>">
+        <a class="addthis_counter addthis_pill_style"></a>
+        </div>
+        <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4f2fd41b73a803c0"></script>
+        <!-- AddThis Button END -->
             
 	<?php }	
 	endwhile;

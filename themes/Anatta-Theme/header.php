@@ -21,6 +21,42 @@
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 	
 	<link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?>: Feed" href="<?php bloginfo('rss2_url'); ?>" />
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+    <script type='text/javascript' src='<?php bloginfo('template_url');?>/jwplayer/jwplayer.js'></script><!--jwplayer file-->
+    
+    <!--Anything Slider-->
+
+	<!-- Demo stuff -->
+	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/anythingslider/demos/css/page.css" media="screen">
+	<script src="<?php bloginfo('template_directory'); ?>/anythingslider/demos/js/jquery.jatt.min.js"></script>
+
+	<!-- AnythingSlider -->
+	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/anythingslider/css/anythingslider.css">
+	<script src="<?php bloginfo('template_directory'); ?>/anythingslider/js/jquery.anythingslider.min.js"></script>
+
+	<!-- Ideally, add the stylesheet(s) you are going to use here,
+	 otherwise they are loaded and appended to the <head> automatically and will over-ride the IE stylesheet below -->
+	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/anythingslider/css/theme-metallic.css">
+
+	<script>
+		// Set up Sliders
+		// **************
+		$(function(){
+
+			$('#slider1').anythingSlider({
+				theme           : 'metallic',
+				easing          : 'easeInOutBack',
+				
+			});
+
+			// tooltips for first demo
+			$.jatt();
+
+		});
+	</script>
+    
+     <!--/Anything Slider-->
 	
 	<?php if (is_search()) { ?>
 	   <meta name="robots" content="noindex, nofollow" /> 
@@ -28,7 +64,7 @@
 	<?php //if ( is_singular() ) wp_enqueue_script( 'comment-reply' ); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class(); ?> id="main">
 	<header class="body">
    <h1 id="logo"><a href="<?php bloginfo('url');?>" title="Generra"><img src="<?php header_image(); ?>"   alt="" /></a></h1><!--logo-->
     <!--Site Navigation-->
