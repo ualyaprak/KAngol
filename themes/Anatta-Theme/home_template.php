@@ -4,7 +4,7 @@ Template Name: Home
 */
 ?>
 <?php get_header(); ?>
-	<section class="body index">				
+	<div id="content" class="clearfix">				
 		<?php if (have_posts()) : while (have_posts()) : the_post();
 		$image_gal =  get_post_meta($post->ID, 'image_gallery', true); //getting value for image gallery for slideshow
 		$video_1 =  get_post_meta($post->ID, 'video_slideshow1', true); //getting value for video url 1 for slideshow
@@ -24,7 +24,7 @@ Template Name: Home
 		}
 		//print_r($images_gallery);
 		?>
-        <div id="page-wrap">
+   
 
 			<!-- AnythingSlider #1 -->
 			<ul id="slider1">
@@ -32,7 +32,7 @@ Template Name: Home
            	foreach($images_gallery as $img_values) 
 			{
 				$i = 1;
-				${'vslide'.$i} = "<img src='".get_bloginfo('home')."/".$img_obj['path']."/".$img_values."' id='fullsizeImage' height='390' width='800' />";
+				${'vslide'.$i} = "<img src='".get_bloginfo('home')."/".$img_obj['path']."/".$img_values."' id='fullsizeImage' height='490' width='920' />";
 				echo "<li>".${'vslide'.$i}."</li>";
 				$i++;
 			}
@@ -46,8 +46,8 @@ Template Name: Home
 					 ${'vslide'.$i} = "<div id='mediaplayer".$i."'></div>
 					 <script type='text/javascript'>
 						jQuery(document).ready(function($) {  
-								var w_height = 375;
-								var w_width = 800;
+								var w_height = 490;
+								var w_width = 920;
 								
 								jwplayer('mediaplayer".$i."').setup({
 								'id': 'playerID',
@@ -91,12 +91,40 @@ Template Name: Home
 			</ul>  
 			
 
-		
-</div>
-        <?php get_slider_option($sliderval1);//function for displaying slider 1 ?>
+			
+
+		<section class="collection clearfix">
+		      <section class="actions">
+		        <section class="buttons clearfix"><a href="#" class="previous-btn">&nbsp;</a> <a href="#" class="next-btn">&nbsp;</a></section>
+		        <h2><?php echo $sliderval1; ?></h2>
+		      </section>
+		      <br class="clear">
+		       <div id="sliderbottom2" class="stepcarousel">
+		      <ul class="belt list1 clearfix">
+			    <?php get_slider_option($sliderval1);//function for displaying slider 1 ?>
+		      </ul>
+		      </div>
+		    </section>
+		    
+		    <section class="blog clearfix">
+		          <section class="actions">
+		            <section class="buttons clearfix"><a href="#" class="previous-btn">&nbsp;</a> <a href="#" class="next-btn">&nbsp;</a></section>
+		            <h2><?php echo $sliderval2; ?></h2>
+		          </section>
+		          <br class="clear">
+		          <div id="sliderbottom" class="stepcarousel">
+		          <ul class="belt list1 clearfix">
+		          <?php get_slider_option($sliderval2);//function for displaying slider 2 ?>
+
+		          </ul>
+		          </div>  		          
+		        </section>
+		        
+		      
+    
         
-        <?php get_slider_option($sliderval2);//function for displaying slider 2 ?>
+        
 		<?php endwhile; endif; ?>
 	   
-	</section>
+	</div>
 <?php get_footer(); ?>

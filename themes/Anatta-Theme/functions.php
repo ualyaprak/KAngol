@@ -57,6 +57,7 @@
 
     //Support for Featured Images for posts or pages
     add_theme_support( 'post-thumbnails' );
+	set_post_thumbnail_size(360, 200, true);
 	
     //Support for WP3 menus - create menus in the admin interface, then add them to widget areas in
     //the theme (like, say, the Nav widget area). Menus are not baked into this theme.
@@ -752,21 +753,25 @@ function get_slider_option($slider_val)
 	query_posts($query_string);
 	// the Loop
 	while (have_posts()) : the_post();
-	{
+	{ ?>
+	<li class="panel">
+	<div class="image">
+	<?php
 		the_post_thumbnail('thumbnail');
 	?>
-        <a href="<?php the_permalink() ?>"><?php the_title(); ?></a>
-        <br/>
+	</div>
+       <h2> <a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h2>
+     
         <p>
 			<?php echo excerpt(20); ?><a href="<?php the_permalink() ?>">MORE</a>
         </p>
         <!-- AddThis Button BEGIN -->
-        <div class="addthis_toolbox addthis_default_style " addthis:url="<?php echo get_permalink(); ?>" addthis:title="<?php echo get_the_title($postid); ?>">
-        <a class="addthis_counter addthis_pill_style"></a>
+        <div class="addthis_toolbox addthis_default_style share" addthis:url="<?php echo get_permalink(); ?>" addthis:title="<?php echo get_the_title($postid); ?>">
+        <a class="addthis_counter addthis_pill_style count"></a>
         </div>
         <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4f2fd41b73a803c0"></script>
         <!-- AddThis Button END -->
-            
+        </li>    
 	<?php }	
 	endwhile;
 	wp_reset_query();
