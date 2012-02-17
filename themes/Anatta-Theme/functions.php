@@ -756,9 +756,7 @@ function get_slider_option($slider_val)
 	{ ?>
 	<li class="panel">
 	<div class="image">
-	<?php
-		the_post_thumbnail('thumbnail');
-	?>
+	<a href="<?php the_permalink() ?>"><?php the_post_thumbnail('thumbnail'); ?></a>
 	</div>
        <h2> <a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h2>
      

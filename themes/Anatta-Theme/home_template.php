@@ -42,6 +42,10 @@ Template Name: Home
 			{
 				if(!empty(${'video_'.$i}))
 				{
+					${'video_url'.$i} = explode('/',${'video_'.$i});
+					if(${'video_url'.$i}[2] != '' ){ ${'video_urls'.$i} = ${'video_'.$i}; }	else { if(${'video_'.$i} != '' ) {  ${'video_urls'.$i} = "http://content.bitsontherun.com/videos/".${'video_'.$i}.".mp4";} }
+				
+					if(${'video_url'.$i}[2] != '' ){ ${'video_img'.$i} = ""; }	else { if(${'video_'.$i} != '' ) {  ${'video_img'.$i} = "http://content.bitsontherun.com/thumbs/".${'video_'.$i}.".jpg";} }
 					$images_count[] = ${'video_'.$i};
 					 ${'vslide'.$i} = "<div id='mediaplayer".$i."'></div>
 					 <script type='text/javascript'>
@@ -56,21 +60,21 @@ Template Name: Home
 								'controlbar.idlehide': 'true',
 								'autostart': false,
 								'skin': '".get_option('home')."/wp-content/themes/Anatta-Theme/jwplayer/skins/glow.zip',
-								 'file': '".${'video_'.$i}."',
-								 'image': '',
+								 'file': '".${'video_urls'.$i}."',
+								 'image': '".${'video_img'.$i}."',
 								 'modes': [
 									{type: 'flash', src: '".get_option('home')."/wp-content/themes/Anatta-Theme/jwplayer/player.swf'},
 									{
 									  type: 'html5',
 									  config: {
-									   'file': '".${'video_'.$i}."',
+									   'file': '".${'video_urls'.$i}."',
 									   'provider': 'video'
 									  }
 									},
 									{
 									  type: 'download',
 									  config: {
-									   'file': '".${'video_'.$i}."',
+									   'file': '".${'video_urls'.$i}."',
 									   'provider': 'video'
 									  }
 									}
@@ -89,7 +93,7 @@ Template Name: Home
             
 
 			</ul>  
-			
+	
 
 			
 
