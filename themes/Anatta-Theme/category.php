@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
 
-	<div id="content" class="clearfix">				
+	<div id="content" class="clearfix inner-pages">				
 		<?php if (have_posts()) : while (have_posts()) : the_post();
 		$image_gal =  get_post_meta($post->ID, 'postimage_gallery', true); //getting value for image gallery for slideshow
 		$video_1 =  get_post_meta($post->ID, 'video_post1', true); //getting value for video url 1 for slideshow
@@ -23,7 +23,7 @@
    
 
 			<!-- AnythingSlider #1 -->
-			<ul id="slider1">
+			<ul id="slider2">
            <?php
            	foreach($images_gallery as $img_values) 
 			{
@@ -96,7 +96,7 @@
 		        <h2><?php echo $sliderval1; ?></h2>
 		      </section>
 		      <br class="clear">
-		       <div id="sliderbottom2" class="stepcarousel">
+		       <div id="sliderbottom" class="stepcarousel">
 		      <ul class="belt list1 clearfix">
 			    <?php get_slider_option($sliderval1);//function for displaying slider 1 ?>
 		      </ul>
