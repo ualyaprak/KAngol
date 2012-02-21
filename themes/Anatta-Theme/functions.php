@@ -57,7 +57,7 @@
 
     //Support for Featured Images for posts or pages
     add_theme_support( 'post-thumbnails' );
-	set_post_thumbnail_size(360, 200, true);
+	set_post_thumbnail_size(305, 170, true);
 	
     //Support for WP3 menus - create menus in the admin interface, then add them to widget areas in
     //the theme (like, say, the Nav widget area). Menus are not baked into this theme.
@@ -164,12 +164,12 @@
     // Your changeable header business starts here
     define( 'HEADER_TEXTCOLOR', '' );
     // No CSS, just IMG call. The %s is a placeholder for the theme template directory URI.
-    define( 'HEADER_IMAGE', '%s/images/headers/kangol_logo.jpg' );
+    define( 'HEADER_IMAGE', '%s/images/headers/logo.jpg' );
 
     // The height and width of your custom header. You can hook into the theme's own filters to change these values.
     // Add a filter to yourtheme_header_image_width and yourtheme_header_image_height to change these values.
-    define( 'HEADER_IMAGE_WIDTH', apply_filters( 'yourtheme_header_image_width', 72 ) );
-    define( 'HEADER_IMAGE_HEIGHT', apply_filters( 'yourtheme_header_image_height', 82 ) );
+    define( 'HEADER_IMAGE_WIDTH', apply_filters( 'yourtheme_header_image_width', 58 ) );
+    define( 'HEADER_IMAGE_HEIGHT', apply_filters( 'yourtheme_header_image_height', 69 ) );
 
     // We'll be using post thumbnails for custom header images on posts and pages.
     // We want them to be 940 pixels wide by 198 pixels tall (larger images will be auto-cropped to fit).
@@ -743,7 +743,7 @@ function get_slider_option($slider_val)
 {
 	if($slider_val == 'Collection')
 	{
-		$query_string = 'category_name=shop&showposts=6';
+		$query_string = 'category_name=shop&showposts=-1';
 	}
 	else
 	{
@@ -753,18 +753,69 @@ function get_slider_option($slider_val)
 	query_posts($query_string);
 	// the Loop
 	while (have_posts()) : the_post();
+	global $post;
+	//$size = array(320,170);
 	{ ?>
 	<li class="panel">
-	<div class="image">
-	<a href="<?php the_permalink() ?>"><?php the_post_thumbnail('thumbnail'); ?></a>
+	<div class="image" >
+	<a href="<?php the_permalink() ?>"><?php  the_post_thumbnail('thumbnail'); ?></a>
 	</div>
-       <h2> <a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h2>
+    <?php /*?><?php 
+    if($slider_val == 'Collection')
+	{
+		foreach((get_the_category()) as $childcat) {
+			if (cat_is_ancestor_of($childcat->category_parent, $childcat)) {
+			echo '<h2><a href="'.get_category_link($childcat->cat_ID).'">'.$childcat->cat_name . '</a></h2>';
+			
+			}
+		}
+	 } else { ?><?php */?>
+    <h2> <a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h2>
+    <?php //} ?>
+       
      
         <p>
 			<?php echo excerpt(20); ?><a href="<?php the_permalink() ?>">MORE</a>
         </p>
         <!-- AddThis Button BEGIN -->
-        <div class="addthis_toolbox addthis_default_style share" addthis:url="<?php echo get_permalink(); ?>" addthis:title="<?php echo get_the_title($postid); ?>">
+        <div class="addthis_toolbox addthis_default_style share" addthis:url="<?php echo get_permalink(); ?>" addthis:title="<?php echo get_the_title($post->ID); ?>">
+        <a class="addthis_counter addthis_pill_style count"></a>
+        </div>
+        <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4f2fd41b73a803c0"></script>
+        <!-- AddThis Button END -->
+        </li>    
+	<?php }	
+	endwhile;
+	wp_reset_query();
+
+}
+
+
+//function for showing Slider selected for page/post options
+
+function get_cat_option($cat_val)
+{
+	
+		$query_string = 'cat='.$cat_val.'&showposts=-1';
+	
+	
+	query_posts($query_string);
+	// the Loop
+	while (have_posts()) : the_post();
+	global $post;
+	//$size = array(320,170);
+	{ ?>
+	<li class="panel" style="width:920px">
+	
+    <h2><?php the_title(); ?> &nbsp;<span class="metadata"><?php the_time('m.d.y'); ?></span></h2>
+    <?php //} ?>
+       
+     
+        <p>
+			<?php the_content(); ?>
+        </p>
+        <!-- AddThis Button BEGIN -->
+        <div class="addthis_toolbox addthis_default_style share" addthis:url="<?php echo get_permalink(); ?>" addthis:title="<?php echo get_the_title($post->ID); ?>">
         <a class="addthis_counter addthis_pill_style count"></a>
         </div>
         <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4f2fd41b73a803c0"></script>
@@ -778,3 +829,4 @@ function get_slider_option($slider_val)
 
 
 ?>
+

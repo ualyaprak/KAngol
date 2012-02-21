@@ -1,7 +1,7 @@
 <?php get_header(); ?>
-	<div id="content" class="clearfix">
-		<?php if (have_posts()) : while (have_posts()) : the_post(); 
-		$image_gal =  get_post_meta($post->ID, 'postimage_gallery', true); //getting value for image gallery for slideshow
+	<div id="content" class="clearfix inner-pages">
+	<?php if (have_posts()) : while (have_posts()) : the_post(); 
+	$image_gal =  get_post_meta($post->ID, 'postimage_gallery', true); //getting value for image gallery for slideshow
 	$video_1 =  get_post_meta($post->ID, 'video_post1', true); //getting value for video url 1 for slideshow
 	$video_2 =  get_post_meta($post->ID, 'video_post2', true); //getting value for video url 1 for slideshow
 	$video_3 =  get_post_meta($post->ID, 'video_post3', true); //getting value for video url 1 for slideshow
@@ -11,23 +11,38 @@
 		$img_obj = mysql_fetch_array($img_sql);
 		//echo  $img_obj->gid;
 		
-		$images_gal = mysql_query("select filename from aNaTTa_ngg_pictures where galleryid = '".$img_obj['gid']."'"); //query for getting gallery images
+		$images_gal = mysql_query("select pid, filename, description from aNaTTa_ngg_pictures where galleryid = '".$img_obj['gid']."'"); //query for getting gallery images
 		while($images_row = mysql_fetch_array($images_gal))
 		{
-			$images_gallery[] = $images_row['filename'];
+			$images_gallery[] = $images_row;
+			
 		}
 		//print_r($images_gallery);
 		?>
-		<!-- AnythingSlider #1 -->
-			<ul id="slider1">
+<section class="slideshow">
+  <section class="slides">
+    <section class="slide">
+      
+			<!-- AnythingSlider #1 -->
+			<ul id="slider3">
            <?php
 		   if(!empty($images_gallery))
 		   {
            	foreach($images_gallery as $img_values) 
 			{
 				$i = 1;
-				${'vslide'.$i} = "<img src='".get_bloginfo('home')."/".$img_obj['path']."/".$img_values."' id='fullsizeImage' height='490' width='920' />";
-				echo "<li>".${'vslide'.$i}."</li>";
+				//echo $img_values['pid'];
+				$img_link = nggcf_get_field($img_values['pid'], 'Image Link');
+				if(empty($img_link))
+				{
+					${'vslide'.$i} = "<img src='".get_bloginfo('home')."/".$img_obj['path']."/".$img_values['filename']."' id='fullsizeImage' height='490' width='920' />";
+				}
+				else
+				{
+					${'vslide'.$i} = "<a href='".$img_link."' target='_blank'><img src='".get_bloginfo('home')."/".$img_obj['path']."/".$img_values['filename']."' id='fullsizeImage' height='490' width='920' /></a>";
+				}
+				
+				echo "<li><span>".stripslashes($img_values['description'])."</span>".${'vslide'.$i}."</li>";
 				$i++;
 			}
 			}	
@@ -86,38 +101,43 @@
 				?>
             
 
-			</ul>  
+			
+						</ul> 
+				
+					    </section>
+					  </section>
+					</section>	
+						
 		
-  <article <?php post_class() ?> id="post-<?php the_ID(); ?>">
-  
-    <header>
-      <h2><a href="<?php the_permalink() ?>">
-        <?php the_title(); ?> 
-        </a></h2> 
-		<?php the_time('m.d.y'); ?>
-      
-    </header>
-    <section>
-      <?php the_content(); ?>
-    </section>
-    <!-- AddThis Button BEGIN -->
-        <div class="addthis_toolbox addthis_default_style share" addthis:url="<?php echo get_permalink(); ?>" addthis:title="<?php echo get_the_title($post->ID); ?>">
-        <a class="addthis_counter addthis_pill_style count"></a>
-        </div>
-        <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4f2fd41b73a803c0"></script>
-        <!-- AddThis Button END -->
-  </article>
- 
-
- <section class="collection clearfix">
+		
+		<!-- Article -->
+		  <article <?php post_class() ?> id="post-<?php the_ID(); ?>">
+		  <article class="post clearfix">
+		    <section class="inner-post">
+		      <section class="actions">
+		        <section class="buttons clearfix"></section>
+		      </section>
+		      <h2> <?php the_title(); ?><span class="metadata"><?php the_time('m.d.y'); ?></span></h2>
+		      <?php the_content(); ?>
+		      <br class="clear" />
+		     
+		     <div class="addthis_toolbox addthis_default_style share" addthis:url="<?php echo get_permalink(); ?>" addthis:title="<?php echo get_the_title($post->ID); ?>">
+		     <a class="addthis_counter addthis_pill_style count"></a>
+		     </div>
+		     <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4f2fd41b73a803c0"></script>
+		     
+		     </section>
+		  </article>
+		  <!-- /Article -->
+<section class="collection clearfix">
 		      <section class="actions">
 		        <section class="buttons clearfix"><a href="#" class="previous-btn">&nbsp;</a> <a href="#" class="next-btn">&nbsp;</a></section>
-		        <h2><?php  echo $sliderval1;?></h2>
+		        <h2><?php echo $sliderval1; ?></h2>
 		      </section>
 		      <br class="clear">
-		       <div id="sliderbottom2" class="stepcarousel">
+		       <div id="sliderbottom" class="stepcarousel">
 		      <ul class="belt list1 clearfix">
-			    <?php  get_slider_option($sliderval1);//function for displaying slider 1 ?>
+			    <?php get_slider_option($sliderval1);//function for displaying slider 1 ?>
 		      </ul>
 		      </div>
 		    </section>

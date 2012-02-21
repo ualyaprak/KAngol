@@ -43,12 +43,13 @@
 		galleryid: 'sliderbottom', //id of carousel DIV
 		beltclass: 'belt', //class of inner "belt" DIV containing all the panel DIVs
 		panelclass: 'panel', //class of panel DIVs each holding content
-		autostep: {enable:false, moveby:1, pause:3000},
+		autostep: {enable:false, moveby:3, pause:3000},
 		panelbehavior: {speed:500, wraparound:false, wrapbehavior:'slide', persist:true},
-		defaultbuttons: {enable: true, moveby: 1, leftnav: ['http://i34.tinypic.com/317e0s5.gif', 842, -42], rightnav: ['http://i38.tinypic.com/33o7di8.gif', -45, -42]},
+		defaultbuttons: {enable: true, moveby: 3, leftnav: ['http://i34.tinypic.com/317e0s5.gif', 842, -42], rightnav: ['http://i38.tinypic.com/33o7di8.gif', -45, -42]},
 		statusvars: ['statusA', 'statusB', 'statusC'], //register 3 variables that contain current panel (start), current panel (last), and total panels
 		contenttype: ['inline'] //content setting ['inline'] or ['ajax', 'path_to_external_file']
 	})
+	
 	
 	
 <?php if(is_home() || is_front_page()) { ?>
@@ -59,9 +60,9 @@
 		galleryid: 'sliderbottom2', //id of carousel DIV
 		beltclass: 'belt', //class of inner "belt" DIV containing all the panel DIVs
 		panelclass: 'panel', //class of panel DIVs each holding content
-		autostep: {enable:false, moveby:1, pause:3000},
+		autostep: {enable:false, moveby:3, pause:3000},
 		panelbehavior: {speed:500, wraparound:false, wrapbehavior:'slide', persist:true},
-		defaultbuttons: {enable: true, moveby: 1, leftnav: ['http://i34.tinypic.com/317e0s5.gif', 842, -42], rightnav: ['http://i38.tinypic.com/33o7di8.gif', -45, -42]},
+		defaultbuttons: {enable: true, moveby: 3, leftnav: ['http://i34.tinypic.com/317e0s5.gif', 842, -42], rightnav: ['http://i38.tinypic.com/33o7di8.gif', -45, -42]},
 		statusvars: ['statusA', 'statusB', 'statusC'], //register 3 variables that contain current panel (start), current panel (last), and total panels
 		contenttype: ['inline'] //content setting ['inline'] or ['ajax', 'path_to_external_file']
 	})
@@ -81,48 +82,37 @@
 				
 				
 				$j('#slider2').anythingSlider({
-					autoPlay            : true, 
+					autoPlay            : false, 
 					easing          : 'easeInOutBack',
 					
 				});
 				
-	
+				$j('#slider3').anythingSlider({
+					autoPlay            : true, 
+					easing          : 'easeInOutBack',
+					
+				});
 				// tooltips for first demo
 				$j.jatt();
-	
 			});
-		     
-		     
-		     
-		
-		
 	</script>
-	
 
-	
-     <!--/Anything Slider-->
-     
-     
-     
-     
- 
-     
-     
+  <!--/Anything Slider-->
 </head>
 <body>
-
 <div id="container"> 
-
   <!-- Header-->
   <header id="header" class="clearfix">
     <section class="logo">
       <h1><a href="<?php bloginfo('url');?>" title="Kangol"><img src="<?php header_image(); ?>"   alt="" /></a></h1>
     </section>
+    <section class="title">
+      <h1>  <?php wp_title(''); ?></h1>
+    </section>
   </header>
   <!-- /Header-->
    <!--menu-->  
 <menu id="menu" class="clearfix">
-
 <?php if ( function_exists('dynamic_sidebar') && dynamic_sidebar('header-widget-area') ) : else : ?>
 <?php endif; ?>
 <ul id="header_nav" class="clearfix">
@@ -130,7 +120,6 @@
 </ul>
 </menu>
  <!--/menu-->  
-
 	</header>
 	
 	
