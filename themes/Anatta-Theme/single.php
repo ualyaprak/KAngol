@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-	<div id="content" class="clearfix inner-pages">
+		<div id="content" class="clearfix inner-pages">		
 	<?php if (have_posts()) : while (have_posts()) : the_post(); 
 	$image_gal =  get_post_meta($post->ID, 'postimage_gallery', true); //getting value for image gallery for slideshow
 	$video_1 =  get_post_meta($post->ID, 'video_post1', true); //getting value for video url 1 for slideshow
@@ -22,7 +22,6 @@
 <section class="slideshow">
   <section class="slides">
     <section class="slide">
-      
 			<!-- AnythingSlider #1 -->
 			<ul id="slider3">
            <?php
@@ -42,7 +41,7 @@
 					${'vslide'.$i} = "<a href='".$img_link."' target='_blank'><img src='".get_bloginfo('home')."/".$img_obj['path']."/".$img_values['filename']."' id='fullsizeImage' height='490' width='920' /></a>";
 				}
 				
-				echo "<li><span>".stripslashes($img_values['description'])."</span>".${'vslide'.$i}."</li>";
+				echo "<li><section class='description'><h2></h2><p>".stripslashes($img_values['description'])."</p></section>".${'vslide'.$i}."</li>";
 				$i++;
 			}
 			}	
@@ -99,48 +98,53 @@
 					}
 				}
 				?>
-            
+		</ul> 
 
-			
-						</ul> 
-				
-					    </section>
-					  </section>
-					</section>	
-						
-		
+	    </section>
+	  </section>
+	</section>	
+	
+	
 		
 		<!-- Article -->
 		  <article <?php post_class() ?> id="post-<?php the_ID(); ?>">
-		  <article class="post clearfix">
-		    <section class="inner-post">
-		      <section class="actions">
-		        <section class="buttons clearfix"></section>
-		      </section>
-		      <h2> <?php the_title(); ?><span class="metadata"><?php the_time('m.d.y'); ?></span></h2>
-		      <?php the_content(); ?>
-		      <br class="clear" />
-		     
-		     <div class="addthis_toolbox addthis_default_style share" addthis:url="<?php echo get_permalink(); ?>" addthis:title="<?php echo get_the_title($post->ID); ?>">
-		     <a class="addthis_counter addthis_pill_style count"></a>
-		     </div>
-		     <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4f2fd41b73a803c0"></script>
-		     
-		     </section>
-		  </article>
+		        <article class="clearfix">
+		          <section class="inner-post">
+		            <section class="actions">
+		              <section class="buttons clearfix"><a href="#" class="previous-btn">&nbsp;</a> <a href="#" class="next-btn">&nbsp;</a></section>
+		            </section>
+		            <h2> <?php the_title(); ?><span class="metadata"><?php the_time('m.d.y'); ?></span></h2>
+		            <?php the_content(); ?>
+		           <div class="addthis_toolbox addthis_default_style share" addthis:url="<?php echo get_permalink(); ?>" addthis:title="<?php echo get_the_title($post->ID); ?>">
+		           <a class="addthis_counter addthis_pill_style count"></a>
+		           </div>
+		           <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4f2fd41b73a803c0"></script>
+		           </section>
+		        </article>
+		        <!-- /Article -->
+		</article> 
 		  <!-- /Article -->
-<section class="collection clearfix">
-		      <section class="actions">
-		        <section class="buttons clearfix"><a href="#" class="previous-btn">&nbsp;</a> <a href="#" class="next-btn">&nbsp;</a></section>
-		        <h2><?php echo $sliderval1; ?></h2>
-		      </section>
-		      <br class="clear">
-		       <div id="sliderbottom" class="stepcarousel">
-		      <ul class="belt list1 clearfix">
-			    <?php get_slider_option($sliderval1);//function for displaying slider 1 ?>
-		      </ul>
-		      </div>
-		    </section>
-		<?php endwhile; endif; ?>
+		    
+		    	    <section class="blog clearfix">
+		    		          <section class="actions">
+		    		            <section class="buttons-dynamic clearfix"><a href="#">&nbsp;</a> <a href="#">&nbsp;</a></section>		            <h2><?php echo $sliderval1; ?></h2>
+		    		          </section>
+		    		          <br class="clear">
+		    		          <div id="sliderbottom" class="stepcarousel">
+		    		          <ul class="belt list1 clearfix">
+		    		          <?php get_slider_option($sliderval1);//function for displaying slider 1 ?>
+		    		         
+		    
+		    		          </ul>
+		    		          </div>  		          
+		    		        </section>
+		    
+		<?php endwhile; ?>
+        <nav id="nav-single" class="pagination">
+						
+						<li class="previous"><?php previous_post_link( '%link', __( '<span class="meta-nav">&larr;</span> Previous', '' ) ); ?></li>
+						<li class="next"><?php next_post_link( '%link', __( 'Next <span class="meta-nav">&rarr;</span>', '' ) ); ?></li>
+					</nav>
+        <?php endif; ?>
 	</div>
 <?php get_footer(); ?>

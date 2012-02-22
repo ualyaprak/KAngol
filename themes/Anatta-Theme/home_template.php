@@ -99,7 +99,7 @@ Template Name: Home
 
 		<section class="collection clearfix">
 		      <section class="actions">
-		        <section class="buttons clearfix"><a href="#" class="previous-btn">&nbsp;</a> <a href="#" class="next-btn">&nbsp;</a></section>
+		        <section class="buttons-dynamic clearfix"><a href="#">&nbsp;</a> <a href="#">&nbsp;</a></section>
 		        <h2><?php echo $sliderval1; ?></h2>
 		      </section>
 		      <br class="clear">
@@ -112,8 +112,7 @@ Template Name: Home
 		    
 		    <section class="blog clearfix">
 		          <section class="actions">
-		            <section class="buttons clearfix"><a href="#" class="previous-btn">&nbsp;</a> <a href="#" class="next-btn">&nbsp;</a></section>
-		            <h2><?php echo $sliderval2; ?></h2>
+		            <section class="buttons-dynamic clearfix"><a href="#">&nbsp;</a> <a href="#">&nbsp;</a></section>		            <h2><?php echo $sliderval2; ?></h2>
 		          </section>
 		          <br class="clear">
 		          <div id="sliderbottom" class="stepcarousel">

@@ -98,6 +98,19 @@
 	</script>
 
   <!--/Anything Slider-->
+  <!--contact form-->
+  <script type="text/javascript">
+		function clearText(field)
+		{
+			if (field.defaultValue == field.value) field.value = '';
+		}
+		
+		function restoreText(field) 
+		{
+			if (field.value == '') field.value = field.defaultValue;
+		}
+	</script>
+  
 </head>
 <body>
 <div id="container"> 
@@ -107,7 +120,12 @@
       <h1><a href="<?php bloginfo('url');?>" title="Kangol"><img src="<?php header_image(); ?>"   alt="" /></a></h1>
     </section>
     <section class="title">
-      <h1>  <?php wp_title(''); ?></h1>
+    <?php if(is_single())  { ?>
+    <h1>  <?php $cat = get_the_category(); echo $cat[0]->name;?></h1>
+    <?php } else { ?>
+    <h1>  <?php wp_title(''); ?></h1>
+    <?php } ?>
+      
     </section>
   </header>
   <!-- /Header-->

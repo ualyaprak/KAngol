@@ -450,10 +450,15 @@ function hybrid_create_meta_box() {
 }
 
 function hybrid_post_meta_boxes() {
+$sql_query = mysql_query("select * from aNaTTa_ngg_gallery");
+while($images_row = mysql_fetch_array($sql_query))
+		{
+			$images_gallery[] = $images_row['title'];
+		}
 
 	/* Array of the meta box post options. */
 	$meta_boxes = array(
-		'postimage_gallery' => array( 'name' => 'postimage_gallery', 'title' => __('IMAGE GALLERY:', 'hybrid'),'options' => array('Gallery 1','Gallery 2', 'Gallery 3'), 'type' => 'select' ),
+		'postimage_gallery' => array( 'name' => 'postimage_gallery', 'title' => __('IMAGE GALLERY:', 'hybrid'),'options' => $images_gallery, 'type' => 'select' ),
 		'video_post1' => array( 'name' => 'video_post1', 'title' => __('VIDEO: <br/><small>Enter the URLs to the videos you would like featured on the page</small>', 'hybrid'), 'type' => 'text' ),
 		'video_post2' => array( 'name' => 'video_post2', 'title' => __('', 'hybrid'), 'type' => 'text' ),
 		'video_post3' => array( 'name' => 'video_post3', 'title' => __('', 'hybrid'), 'type' => 'text' ),
@@ -479,11 +484,16 @@ function hybrid_portfolio_meta_boxes() {
 }
 
 function hybrid_slideshow_meta_boxes() {
+		$sql_query = mysql_query("select * from aNaTTa_ngg_gallery");
+		while($images_row = mysql_fetch_array($sql_query))
+		{
+			$images_gallery[] = $images_row['title'];
+		}
 		
 	/* Array of the meta box page options. */
 		
 		$slides_meta_boxes = array(
-			'image_gallery' => array( 'name' => 'image_gallery', 'title' => __('IMAGE GALLERY:', 'hybrid'),'options' => array('Gallery 1','Gallery 2', 'Gallery 3'), 'type' => 'select' ),
+			'image_gallery' => array( 'name' => 'image_gallery', 'title' => __('IMAGE GALLERY:', 'hybrid'),'options' => $images_gallery, 'type' => 'select' ),
 			'video_slideshow1' => array( 'name' => 'video_slideshow1', 'title' => __('VIDEO: <br/><small>Enter the URLs to the videos you would like featured on the page</small>', 'hybrid'), 'type' => 'text' ),
 			'video_slideshow2' => array( 'name' => 'video_slideshow2', 'title' => __('', 'hybrid'), 'type' => 'text' ),
 			'video_slideshow3' => array( 'name' => 'video_slideshow3', 'title' => __('', 'hybrid'), 'type' => 'text' ),
@@ -795,38 +805,18 @@ function get_slider_option($slider_val)
 
 function get_cat_option($cat_val)
 {
-	
-		$query_string = 'cat='.$cat_val.'&showposts=-1';
-	
-	
+	$query_string = 'cat='.$cat_val.'&showposts=-1';
 	query_posts($query_string);
 	// the Loop
-	while (have_posts()) : the_post();
-	global $post;
-	//$size = array(320,170);
-	{ ?>
-	<li class="panel" style="width:920px">
-	
-    <h2><?php the_title(); ?> &nbsp;<span class="metadata"><?php the_time('m.d.y'); ?></span></h2>
-    <?php //} ?>
-       
-     
-        <p>
-			<?php the_content(); ?>
-        </p>
-        <!-- AddThis Button BEGIN -->
-        <div class="addthis_toolbox addthis_default_style share" addthis:url="<?php echo get_permalink(); ?>" addthis:title="<?php echo get_the_title($post->ID); ?>">
-        <a class="addthis_counter addthis_pill_style count"></a>
-        </div>
-        <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4f2fd41b73a803c0"></script>
-        <!-- AddThis Button END -->
-        </li>    
-	<?php }	
-	endwhile;
-	wp_reset_query();
+	if (have_posts()) :
+	while (have_posts()) : the_post();	
+	endwhile; ?>
+	<li class="panel">
+				<?php next_posts_link('&laquo; Older Entries') ?>
+				<?php previous_posts_link('Newer Entries &raquo;') ?>
+     </li>
+	<?php else :  endif; ?>		
+	<?php wp_reset_query();
 
 }
-
-
 ?>
-

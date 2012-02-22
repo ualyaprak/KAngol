@@ -127,16 +127,21 @@ div.anythingSlider .arrow a {
 
 	background-color: #002a4c;
 }
+
+div.anythingSlider .arrow a:hover{
+	background-color:  #ff0000;
+}
+
 /* hide text, target the span so IE7 doesn't text-indent the link */
 div.anythingSlider .arrow a span { display: block; visibility: hidden; }
 /* back arrow */
 div.anythingSlider .back { left: 0; }
-div.anythingSlider .back a { background-image: url(../images/back.jpg);
+div.anythingSlider .back a { background-image: url(../images/back.png);
 background-repeat: no-repeat;
 background-position: center center;
 }
 div.anythingSlider .forward { right: 0; }
-div.anythingSlider .forward a { background-image: url(../images/next.jpg);
+div.anythingSlider .forward a { background-image: url(../images/next.png);
 background-repeat: no-repeat;
 background-position: center center;
 }

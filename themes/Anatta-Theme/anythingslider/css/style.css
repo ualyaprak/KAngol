@@ -293,13 +293,10 @@ body.home .actions { margin-bottom:35px; }
 .actions .buttons a.next-btn{ background:url(../images/icons.png) left -26px no-repeat; float:right;}
 .actions .buttons a.next-btn:hover{ background:url(../images/icons.png) left -49px no-repeat;}
 
-.pagination{position: absolute;width: 54px;background: url(../images/next-pev-btn.gif) top center repeat-y; top: 516px;
-left: 40px;}
+.pagination{position: absolute;width: 54px;background: url(../images/next-pev-btn.gif) top center repeat-y;}
 .pagination li, .pagination a{ float: left;height: 21px;width: 22px;display: block;text-indent: -99999px;}
 .pagination li.previous a{ background: url(../images/icons.png) left -74px no-repeat;}
 .pagination li.next a{ background: url(../images/icons.png) left -26px no-repeat; float: right;}
-.pagination li.next a:hover{ background: url(../images/icons.png) left -49px no-repeat; float: right;}
-.pagination li.previous a:hover{ background:url(../images/icons.png) left -96px no-repeat;}
 .pagination li.next{ float: right;}
 
 a.left-btn{ height:21px; width:22px; display:block; text-decoration:none; background:url(../images/icons.png) left -74px no-repeat; float:left;}
