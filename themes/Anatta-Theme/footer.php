@@ -1,4 +1,4 @@
-<footer id="footer" class="clearfix">
+<footer id="footer" class="clearfix <?php if(is_page('friends')) {?>footer-fixed<?php } ?><?php if(is_page('privacy-policy')) {?>footer-fixed<?php } ?>">
 <?php if ( function_exists('dynamic_sidebar') && dynamic_sidebar('footer-widget-area') ) : else : ?>
         <?php endif; ?>
   

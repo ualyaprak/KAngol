@@ -232,6 +232,7 @@ body.home #header { margin-bottom:8px; }
 
 /*-------------- Footer -------------- */
 #footer{ padding:35px 0px;}
+.footer-fixed{ position:fixed; bottom: 0px; width: 917px;}
 #footer section { float:right; margin-left:33px; font-family:Helvetica, Arial, sans-serif; width:95px;}
 #footer section h2{ color:#333; font-size:12px; line-height:12px;}
 #footer section  ul li{ font-size:10px; color:#333; line-height:12px; }
