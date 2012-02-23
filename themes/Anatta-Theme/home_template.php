@@ -4,7 +4,7 @@ Template Name: Home
 */
 ?>
 <?php get_header(); ?>
-	<div id="content" class="clearfix">				
+	<div id="content" class="clearfix homepage-slider">				
 		<?php if (have_posts()) : while (have_posts()) : the_post();
 		$image_gal =  get_post_meta($post->ID, 'image_gallery', true); //getting value for image gallery for slideshow
 		$video_1 =  get_post_meta($post->ID, 'video_slideshow1', true); //getting value for video url 1 for slideshow

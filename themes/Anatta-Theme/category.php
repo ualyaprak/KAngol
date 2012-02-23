@@ -30,6 +30,8 @@
 			<!-- AnythingSlider #1 -->
 			<ul id="slider2">
            <?php
+		   if(!empty($images_gallery))
+		   {
            	foreach($images_gallery as $img_values) 
 			{
 				$i = 1;
@@ -43,9 +45,16 @@
 				{
 					${'vslide'.$i} = "<a href='".$img_link."' target='_blank'><img src='".get_bloginfo('home')."/".$img_obj['path']."/".$img_values['filename']."' id='fullsizeImage' height='490' width='920' /></a>";
 				}
-				
-				echo "<li><section class='description'><h2></h2><p>".stripslashes($img_values['description'])."</p></section>".${'vslide'.$i}."</li>";
+				if(!empty($img_values['description']))
+				{
+					echo "<li><section class='description'><h2></h2><p>".stripslashes($img_values['description'])."</p></section>".${'vslide'.$i}."</li>";
+				}
+				else
+				{
+					echo "<li>".${'vslide'.$i}."</li>";
+				}
 				$i++;
+			}
 			}
 				
 			 //jwplayer code for the video links
@@ -53,6 +62,19 @@
 			{
 				if(!empty(${'video_'.$i}))
 				{
+				
+				if (preg_match("/vimeo/i", ${'video_'.$i})) 
+				{
+					//Get the path of the URL
+					$vimeo_video = parse_url(${'video_'.$i}, PHP_URL_PATH);
+					
+					//Remove "/" if is in the URL at the end or beggining
+					$vimeo_video = trim($vimeo_video, "/");	
+					
+					${'vslide'.$i} = '<iframe id="video" src="http://player.vimeo.com/video/'.$vimeo_video.'?title=0&amp;byline=0&amp;portrait=0&amp;autoplay=false&amp;loop=none" width="920" height="490" frameborder="0" webkitAllowFullScreen allowFullScreen></iframe>';
+				}
+				else
+				{ //if not vimeo video
 					${'video_url'.$i} = explode('/',${'video_'.$i});
 					if(${'video_url'.$i}[2] != '' ){ ${'video_urls'.$i} = ${'video_'.$i}; }	else { if(${'video_'.$i} != '' ) {  ${'video_urls'.$i} = "http://content.bitsontherun.com/videos/".${'video_'.$i}.".mp4";} }
 				
@@ -97,7 +119,9 @@
 							 //]]>
 						
 						</script>";
+						}//if not vimeo
 						echo "<li>".${'vslide'.$i}."</li>";
+						
 					}
 				}
 				?>

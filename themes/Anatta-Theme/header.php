@@ -82,7 +82,7 @@
 				
 				
 				$j('#slider2').anythingSlider({
-					autoPlay            : false, 
+					autoPlay            : true, 
 					easing          : 'easeInOutBack',
 					
 				});
@@ -95,6 +95,13 @@
 				// tooltips for first demo
 				$j.jatt();
 			});
+			
+			$(document).ready(function() {
+				var Height = $(window).height();
+				$("#container").css("min-height" , Height );
+			});
+			
+			
 	</script>
 
   <!--/Anything Slider-->
