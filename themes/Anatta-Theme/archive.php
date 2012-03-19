@@ -3,7 +3,7 @@
   <?php if (have_posts()) : ?>
   <?php $post = $posts[0]; // Hack. Set $post so that the_date() works. ?>
  
-  <?php /* If this is a tag archive */  elseif( is_tag() ) { ?>
+  <?php /* If this is a tag archive */  if( is_tag() ) { ?>
   <h1>Posts Tagged &#8216;
     <?php single_tag_title(); ?>
     &#8217;</h1>

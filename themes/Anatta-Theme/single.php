@@ -1,6 +1,7 @@
 <?php get_header(); ?>
 		<div id="content" class="clearfix inner-pages">		
 	<?php if (have_posts()) : while (have_posts()) : the_post(); 
+	$cat = get_the_category();
 	$image_gal =  get_post_meta($post->ID, 'postimage_gallery', true); //getting value for image gallery for slideshow
 	$video_1 =  get_post_meta($post->ID, 'video_post1', true); //getting value for video url 1 for slideshow
 	$video_2 =  get_post_meta($post->ID, 'video_post2', true); //getting value for video url 1 for slideshow
@@ -11,7 +12,7 @@
 		$img_obj = mysql_fetch_array($img_sql);
 		//echo  $img_obj->gid;
 		
-		$images_gal = mysql_query("select pid, filename, description from aNaTTa_ngg_pictures where galleryid = '".$img_obj['gid']."'"); //query for getting gallery images
+		$images_gal = mysql_query("select pid, filename, description, sortorder from aNaTTa_ngg_pictures where galleryid = '".$img_obj['gid']."' ORDER BY sortorder"); //query for getting gallery images
 		while($images_row = mysql_fetch_array($images_gal))
 		{
 			$images_gallery[] = $images_row;
@@ -134,12 +135,15 @@
 		            <section class="actions">
 		              <section class="buttons clearfix"><a href="#" class="previous-btn">&nbsp;</a> <a href="#" class="next-btn">&nbsp;</a></section>
 		            </section>
-		            <h2> <?php the_title(); ?><span class="metadata"><?php the_time('m.d.y'); ?></span></h2>
+		            <h2> <?php the_title(); ?><?php /*?><span class="metadata"><?php the_time('m.d.y'); ?></span><?php */?></h2>
 		            <?php the_content(); ?>
+					<?php 
+					if($cat[0]->parent != 3) { //not displaying Share section for Shop category and sub category ?>
 		           <div class="addthis_toolbox addthis_default_style share" addthis:url="<?php echo get_permalink(); ?>" addthis:title="<?php echo get_the_title($post->ID); ?>">
 		           <a class="addthis_counter addthis_pill_style count"></a>
 		           </div>
 		           <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4f2fd41b73a803c0"></script>
+					<?php } ?>
 		           </section>
 		        </article>
 		        <!-- /Article -->
@@ -162,9 +166,10 @@
 		    
 		<?php endwhile; ?>
         <nav id="nav-single" class="pagination">
+						<li class="next"><?php next_post_link( '%link', __( 'Next <span class="meta-nav">&rarr;</span>', '' ) ); ?></li>
 						
 						<li class="previous"><?php previous_post_link( '%link', __( '<span class="meta-nav">&larr;</span> Previous', '' ) ); ?></li>
-						<li class="next"><?php next_post_link( '%link', __( 'Next <span class="meta-nav">&rarr;</span>', '' ) ); ?></li>
+						
 					</nav>
         <?php endif; ?>
 	</div>

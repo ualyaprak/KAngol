@@ -223,23 +223,28 @@ body.home #header { margin-bottom:8px; }
 #menu ul li ul.sub-menu li a:hover , #menu ul li ul.sub-menu li.active a{  background:#ff0000; color:#fff; }
 #menu ul li.current-menu-item a{ color: #ff0000;}
 
-.sociable{ float:right; width:68px; margin-left:6px; margin-right:15px;}
-.sociable a{ height:16px; width:16px; display:block; float:left; text-decoration:none; margin-right:1px; text-indent: -9999px;}
-.sociable a.email{ background:url(../images/icons.png) -24px top no-repeat;}
-.sociable a.facebook{ background:url(../images/icons.png) -39px top no-repeat;}
-.sociable a.twitter{ background:url(../images/icons.png) -55px top no-repeat;}
-.sociable a.rss{ background:url(../images/icons.png) -71px top no-repeat;}
+.sociable{ float:right; width:69px; margin-left:6px; margin-right:15px;}
+.sociable a{ height:19px; width:20px; display:block; float:left; text-decoration:none; margin-right:3px; text-indent: -9999px;}
+.sociable a.email{ background:url(../images/icons.png) -22px top no-repeat;}
+.sociable a.email:hover{ background:url(../images/icons.png) -112px top no-repeat;}
+.sociable a.facebook{ background:url(../images/icons.png) -39px top no-repeat; display: none;}
+.sociable a.twitter{ background:url(../images/icons.png) -42px top no-repeat;}
+.sociable a.twitter:hover{ background:url(../images/icons.png) -133px top no-repeat;}
+.sociable a.rss{ background:url(../images/icons.png) -64px top no-repeat;}
+.sociable a.rss:hover{ background:url(../images/icons.png) -155px top no-repeat;}
 
 /*-------------- Footer -------------- */
 #footer{ padding:35px 0px;}
 .footer-fixed{ position:fixed; bottom: 0px; width: 917px;}
 #footer section { float:right; margin-left:33px; font-family:Helvetica, Arial, sans-serif; width:95px;}
 #footer section h2{ color:#333; font-size:12px; line-height:12px;}
-#footer section  ul li{ font-size:10px; color:#333; line-height:12px; }
-#footer section  ul li a{ color:#333; text-decoration:none;}
+#footer section ul li{ font-size:10px; color:#333; line-height:12px; }
+#footer section ul li a{ color:#333; text-decoration:none;}
+#footer section ul li.twt a{  color: #00aeef;}
 #footer section p{font-size:10px; color:#333; line-height:12px;}
 #footer section a{color:#333; text-decoration:none;}
 #footer section a:hover{color: #9E0B0F;}
+
 
 
 #footer section.copyright{ width:195px; text-align:right;}
@@ -272,17 +277,17 @@ ul.list1 li p a:hover{text-decoration: underline;}
 .slideshow .description { position:absolute; bottom:0px; left:30px; width:866px; z-index:100; text-align: left; }
 .slideshow .description h2 { margin-bottom:12px; padding-left:10px; color: #ff2222; }
 .slideshow .description h2 a{ font-size:18px; color:#ff0000; text-decoration:none; }
-.slideshow .description p { font-size: 14px;color: #333;line-height: 15px;padding: 10px 10px;left: 30px;
+.slideshow .description p { font-size: 11px;color: #333;line-height: 15px;padding: 10px 10px;left: 30px;
 background:url(../images/img-des-bg.png) 0 0 repeat; 
 
  }
 
 .slideshow .arrows a.previous { background:url(../images/previous.jpg) no-repeat top left; position:absolute; top:0; left:0; width:28px; height:490px; z-index:1000; text-decoration:none; }
-.slideshow .arrows a.next { background:url(../images/next.jpg) no-repeat top left; position:absolute; top:0; right:0; width:28px; height:490px; z-index:1000; text-decoration:none; } 
+.slideshow .arrows a.next { background:url(../images/) no-repeat top left; position:absolute; top:0; right:0; width:28px; height:490px; z-index:1000; text-decoration:none; } 
 
 .actions{ float:right; margin-right:25px; clear:both; margin-bottom:22px; }
 body.home .actions { margin-bottom:35px; }
-.actions h2{  font-size:18px; color:#333; font-family: 'MetaBoldLF-RomanRegular'; margin-right:10px; float:right; text-transform:uppercase; font-weight:normal; margin-top: 1px; margin-top: 6px;}
+.actions h2{  font-size:14px; color:#333; font-family: 'MetaNormalLF-RomanRegular'; margin-right:10px; float:right; text-transform:uppercase; font-weight:normal; margin-top: 1px; margin-top: 9px;}
 
 
 .actions .buttons{ float:right; width:54px; background:url(../images/next-pev-btn.gif) top center repeat-y; margin-left:6px;  margin-top: 5px; text-indent: -99999px;}
@@ -295,13 +300,16 @@ body.home .actions { margin-bottom:35px; }
 .actions .buttons a.next-btn:hover{ background:url(../images/icons.png) left -49px no-repeat;}
 
 .pagination{position: absolute;width: 54px;background: url(../images/next-pev-btn.gif) top center repeat-y; top: 516px;
-left: 40px;}
+right: 30px;}
 .pagination li, .pagination a{ float: left;height: 21px;width: 22px;display: block;text-indent: -99999px;}
-.pagination li.previous a{ background: url(../images/icons.png) left -74px no-repeat;}
-.pagination li.next a{ background: url(../images/icons.png) left -26px no-repeat; float: right;}
-.pagination li.next a:hover{ background: url(../images/icons.png) left -49px no-repeat; float: right;}
-.pagination li.previous a:hover{ background:url(../images/icons.png) left -96px no-repeat;}
-.pagination li.next{ float: right;}
+.pagination li{ position: relative;}
+.pagination a { position: absolute;}
+.pagination li.previous a{ background: url(../images/icons.png) left -74px no-repeat; width: 36px;}
+.pagination li.next a{ background: url(../images/icons.png) left -26px no-repeat; float: right; width: 60px;}
+.pagination li.next a:hover{ background: url(../images/icons.png) left -156px no-repeat; float: right; left: 1px; top: 0px;}
+.pagination li.previous a:hover{ background:url(../images/icons.png) left -138px no-repeat; right: 0px; top: 0px;}
+.pagination li.next{ float: right; position: relative;
+left: 3px;}
 
 a.left-btn{ height:21px; width:22px; display:block; text-decoration:none; background:url(../images/icons.png) left -74px no-repeat; float:left;}
 a.left-btn:hover{ background:url(../images/icons.png) left -96px no-repeat;}
@@ -310,7 +318,7 @@ a.right-btn:hover{ background:url(../images/icons.png) left -49px no-repeat;}
 
 
 body.home .collection { margin-bottom:42px; }
-.collection { margin-top: 20px;}
+.collection {}
 .blog{ margin-bottom:23px; padding-left:0px; }
 .blog .actions , body.home .blog .actions { margin-bottom:20px;}
 .blog ul.list1 li{ margin-right:2px; width:305px;}
@@ -319,16 +327,18 @@ body.home .collection { margin-bottom:42px; }
 .blog ul.list1 li .image{ margin-bottom:16px;}
 
 .newsletter-form div{ float: left;}
-.newsletter-form{ float:right; height:16px; width:166px; position: relative;}
+.newsletter-form{ float:right; height:16px; width:169px; position: relative;}
 .newsletter-form #error{ position: absolute; left: 0px; top: 18px; color: red; font-size: 10px; width: 230px; }
 .newsletter-form #success{ position: absolute; left: 0px; top: 18px; color: green; font-size: 10px; width: 230px; }
-.newsletter-form input{ border:1px solid #cccccc; width:145px; height:16px; line-height:14px; color:#595959; font-size:9px; float:left; background:#fff; display:block; padding:0px 4px; margin-right:2px;}
-.newsletter-form span.button input{ background:url(../images/icons.png) no-repeat left top; height:16px; width:16px; border:none; float:left; padding:0px; cursor:pointer; text-indent: -99999px;} 
+.newsletter-form input{ border:1px solid #cccccc; width:145px; line-height:14px; color:#595959; font-size:9px; float:left; background:#fff; display:block; padding:0px 3px 0px 4px; margin-right:2px; line-height: 19px; height: 19px;
+}
+.newsletter-form span.button input{ background:url(../images/icons.png) no-repeat left top; height:19px; width:19px; border:none; float:left; padding:0px; cursor:pointer; text-indent: -99999px;} 
+.newsletter-form span.button input:hover{background:url(../images/icons.png) no-repeat -87px top;}
 
-.post { position:relative; padding-top: 4px; margin-bottom:38px; padding-left:16px; }
+.post { position:relative; padding-top: 4px;padding-left:16px; margin-bottom: 25px; }
 .post .inner-post { padding:0 24px; }
 .post .actions { float:left; margin-bottom:25px; }
-.post .actions .buttons { float:left; margin:0; }
+.post .actions .buttons { float:left; margin:0; display: none; }
 .post a.share{ display:block; float:left; height:17px; width:54px; text-decoration:none; background:url(../images/icons.png) left -119px no-repeat;}
 .post a.count{ display:block; float:left;text-decoration:none; }
 .post p { font-size:12px; color:#333; margin-bottom:13px; line-height:14px; }
@@ -401,18 +411,24 @@ z-index: 9999;}
 .post-slider{height: 700px;}
 .post-slider li{width: 900px;}
 .homepage-slider div.anythingSlider .arrow{ display: none!important;}
+.pause-indicator { position: absolute; top: 30px; right: 65px; z-index: 99999; display: none;}
+.play-indicator { position: absolute; top: 30px; right: 65px; z-index: 99999; display: none;}
+#menu ul li.parent ul.child{ background:url(../images/blank.gif) left top repeat;}
+
+#menu ul li ul.sub-menu{ background:url(../images/blank.gif) left top repeat;}
 
 /* 768px width */
-@media only screen and (max-width: 959px) and (min-width: 768px) {
-
+@media only screen and (max-width: 1024px) and (min-width: 768px) {
+#menu ul li#menu-item-372{ display: none;}
 }
 
 /* 480px width */
 @media only screen and (max-width: 767px) and (min-width: 480px) {
-
+#menu ul li#menu-item-372{ display: none;}
 }
 
 /* 320px width */
 @media only screen and (max-width: 479px) {
+#menu ul li#menu-item-372{ display: none;}
 
 }

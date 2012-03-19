@@ -3,8 +3,13 @@
 Template Name: Home
 */
 ?>
+
+
 <?php get_header(); ?>
-	<div id="content" class="clearfix homepage-slider">				
+	<div id="content" class="clearfix homepage-slider">	
+		<div class="slider-only">
+		<img class="pause-indicator" src="<?php bloginfo('template_url') ?>/images/slideshow-pause.png" alt=""/>	
+		<img class="play-indicator" src="<?php bloginfo('template_url') ?>/images/slideshow-play.png" alt=""/>			
 		<?php if (have_posts()) : while (have_posts()) : the_post();
 		$image_gal =  get_post_meta($post->ID, 'image_gallery', true); //getting value for image gallery for slideshow
 		$video_1 =  get_post_meta($post->ID, 'video_slideshow1', true); //getting value for video url 1 for slideshow
@@ -17,7 +22,7 @@ Template Name: Home
 		$img_obj = mysql_fetch_array($img_sql);
 		//echo  $img_obj->gid;
 		
-		$images_gal = mysql_query("select filename from aNaTTa_ngg_pictures where galleryid = '".$img_obj['gid']."'"); //query for getting gallery images
+		$images_gal = mysql_query("select filename, sortorder from aNaTTa_ngg_pictures where galleryid = '".$img_obj['gid']."' ORDER BY sortorder"); //query for getting gallery images
 		while($images_row = mysql_fetch_array($images_gal))
 		{
 			$images_gallery[] = $images_row['filename'];
@@ -93,7 +98,7 @@ Template Name: Home
             
 
 			</ul>  
-	
+	</div>
 
 			
 
@@ -115,7 +120,7 @@ Template Name: Home
 		            <section class="buttons-dynamic clearfix"><a href="#">&nbsp;</a> <a href="#">&nbsp;</a></section>		            <h2><?php echo $sliderval2; ?></h2>
 		          </section>
 		          <br class="clear">
-		          <div id="sliderbottom" class="stepcarousel">
+		          <div id="sliderbottom3" class="stepcarousel">
 		          <ul class="belt list1 clearfix">
 		          <?php get_slider_option($sliderval2);//function for displaying slider 2 ?>
 

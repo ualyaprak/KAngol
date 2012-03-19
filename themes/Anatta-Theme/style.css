@@ -405,3 +405,7 @@ display: block!important;
 @media only screen and (max-width: 479px) {
 
 }
+
+
+/*Spil additions */
+.friend { float: left; width: 41px; height: 41px; margin: 0px 20px 20px 0px; }
