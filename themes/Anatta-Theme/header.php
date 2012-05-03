@@ -20,7 +20,7 @@
     <!--[if lt IE 9]>
     	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=0"/>
     <!-- Adding "maximum-scale=1" fixes the Mobile Safari auto-zoom bug: http://filamentgroup.com/examples/iosScaleBug/ -->
     
     
@@ -42,7 +42,7 @@
 	<?php } ?>
 	<script type="text/javascript">
 	
-	<?php if(!is_home() && !is_front_page()) { ?>
+	<?php if(!is_home() && !is_front_page() && !is_page('stockists')) { ?>
 	stepcarousel.setup({
 		galleryid: 'sliderbottom', //id of carousel DIV
 		beltclass: 'belt', //class of inner "belt" DIV containing all the panel DIVs
@@ -77,14 +77,18 @@ stepcarousel.setup({
 		contenttype: ['inline'] //content setting ['inline'] or ['ajax', 'path_to_external_file']
 	})
 
-		<?php } ?>		// Set up Sliders
+		<?php } ?>		
+			<?php if(!is_page('stockists')) { ?>
+		// Set up Sliders
 			// **************
 			 var $j = jQuery.noConflict();
 			$j(function(){
 				$j('#slider1').anythingSlider({
 					autoPlay            : true, 
 					easing          : 'easeInOutBack',
-					pauseOnHover        : true
+					pauseOnHover        : true,
+					startText           : "",
+					stopText            : ""
 					
 				});
 				
@@ -105,21 +109,9 @@ stepcarousel.setup({
 			$(document).ready(function() {
 				var Height = $(window).height();
 				$("#container").css("min-height" , Height );
-				$('.slider-only').hover(
-				  function () {
-				    $('.pause-indicator').fadeIn();
-				    $('.play-indicator').hide();
-				  },
-				  function () {
-				     $('.pause-indicator').fadeOut( 'fast', function() {});
-				     $('.play-indicator').fadeIn( 'fast', function() {
-				      $('.play-indicator').fadeOut(2000);
-				     });
-				  }
-				);
 			});
 			
-			
+		<?php } ?>	
 	</script>
 
   <!--/Anything Slider-->

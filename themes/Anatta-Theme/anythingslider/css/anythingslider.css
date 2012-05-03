@@ -34,16 +34,15 @@ div.anythingSlider .anythingControls ul a.cur, div.anythingSlider .anythingContr
 }
 /* start-stop button, stopped, default state */
 div.anythingSlider .start-stop {
-	background-color: #040;
-	color: #fff;
+
 }
 /* start-stop button, playing, default state */
 div.anythingSlider .start-stop.playing {
-	background-color: #800;
+	
 }
 /* start-stop button, default hovered text color (when visible) */
 div.anythingSlider .start-stop:hover, div.anythingSlider .start-stop.hover {
-	color: #ddd;
+
 }
 
 /**** Active State (slider has keyboard focus) ****/
@@ -57,16 +56,18 @@ div.anythingSlider.activeSlider .anythingControls ul a.cur, div.anythingSlider.a
 }
 /* start-stop button, stopped, active state */
 div.anythingSlider .start-stop {
-	background-color: #080;
-	color: #fff;
+
 }
 /* start-stop button, playing, active state */
 div.anythingSlider .start-stop.playing {
-	background-color: #d00;
+background-image: url(../images/play-pause-bg.png);
+background-position: 0 0 ;
+background-repeat: no-repeat;
+
 }
 /* start-stop button, active slider hovered text color (when visible) */
 div.anythingSlider .start-stop:hover, div.anythingSlider .start-stop.hover {
-	color: #fff;
+	
 }
 
 /***********************
@@ -187,27 +188,26 @@ div.anythingSlider.rtl .anythingWindow {
 
 /* Autoplay Start/Stop button */
 div.anythingSlider .start-stop {
-	background-image: url(../images/default.png);
-	background-position: center -288px;
-	background-repeat: repeat-x;
+	background-image: url(../images/play-pause-bg.png);
+	background-position: 0 -134px ;
+	background-repeat: no-repeat;
 	padding: 2px 5px;
-	width: 40px;
+	width: 130px;
+	height: 130px;
 	text-align: center;
 	text-decoration: none;
 	float: right;
 	z-index: 100;
 	outline: 0;
-	border-radius: 0 0 5px 5px;
-	-moz-border-radius: 0 0 5px 5px;
-	-webkit-border-radius: 0 0 5px 5px;
+
+
+
+}
+
+.homepage-slider .anythingControls{
+	position: absolute; top: 30px; right: 65px; z-index: 99999;
 }
 /* hide cell shading on hover - makes the button appear to come forward */
-div.anythingSlider .start-stop:hover, div.anythingSlider .start-stop.hover { background-image: none; }
+
 
 /* probably not necessary, but added just in case */
-div.anythingSlider, div.anythingSlider .anythingWindow, div.anythingSlider .anythingControls ul a, div.anythingSlider .arrow a, div.anythingSlider .start-stop {
-	transition-duration: 0;
-	-o-transition-duration: 0;
-	-moz-transition-duration: 0;
-	-webkit-transition-duration: 0;
-}

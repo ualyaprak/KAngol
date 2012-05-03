@@ -7,9 +7,7 @@ Template Name: Home
 
 <?php get_header(); ?>
 	<div id="content" class="clearfix homepage-slider">	
-		<div class="slider-only">
-		<img class="pause-indicator" src="<?php bloginfo('template_url') ?>/images/slideshow-pause.png" alt=""/>	
-		<img class="play-indicator" src="<?php bloginfo('template_url') ?>/images/slideshow-play.png" alt=""/>			
+		<div class="slider-only">		
 		<?php if (have_posts()) : while (have_posts()) : the_post();
 		$image_gal =  get_post_meta($post->ID, 'image_gallery', true); //getting value for image gallery for slideshow
 		$video_1 =  get_post_meta($post->ID, 'video_slideshow1', true); //getting value for video url 1 for slideshow
