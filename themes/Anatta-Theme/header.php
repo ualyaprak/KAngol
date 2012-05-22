@@ -20,7 +20,7 @@
     <!--[if lt IE 9]>
     	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=0"/>
+    <meta name="viewport" content="width=device-width" />
     <!-- Adding "maximum-scale=1" fixes the Mobile Safari auto-zoom bug: http://filamentgroup.com/examples/iosScaleBug/ -->
     
     
@@ -42,7 +42,7 @@
 	<?php } ?>
 	<script type="text/javascript">
 	
-	<?php if(!is_home() && !is_front_page() && !is_page('stockists')) { ?>
+	<?php if(!is_home() && !is_front_page()) { ?>
 	stepcarousel.setup({
 		galleryid: 'sliderbottom', //id of carousel DIV
 		beltclass: 'belt', //class of inner "belt" DIV containing all the panel DIVs
@@ -77,9 +77,7 @@ stepcarousel.setup({
 		contenttype: ['inline'] //content setting ['inline'] or ['ajax', 'path_to_external_file']
 	})
 
-		<?php } ?>		
-			<?php if(!is_page('stockists')) { ?>
-		// Set up Sliders
+		<?php } ?>		// Set up Sliders
 			// **************
 			 var $j = jQuery.noConflict();
 			$j(function(){
@@ -111,7 +109,7 @@ stepcarousel.setup({
 				$("#container").css("min-height" , Height );
 			});
 			
-		<?php } ?>	
+			
 	</script>
 
   <!--/Anything Slider-->
